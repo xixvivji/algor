@@ -14,7 +14,9 @@ class Solution {
                 minHeap.add(number);
                 maxHeap.add(number);
             } else if (command.equals("D")) {
-                if (minHeap.isEmpty()) continue;
+                if (minHeap.isEmpty()) {
+                    continue;
+                }
 
                 if (number == 1) {
                     int max = maxHeap.poll();
@@ -27,9 +29,47 @@ class Solution {
         }
 
         if (minHeap.isEmpty()) {
-            return new int[]{0, 0};
+            return new int[] {0, 0};
         } else {
-            return new int[]{maxHeap.peek(), minHeap.peek()};
+            return new int[] {maxHeap.peek(), minHeap.peek()};
         }
     }
 }
+
+/*
+
+import java.util.*;
+
+class Solution {
+    public int[] solution(String[] operations) {
+        TreeMap<Integer, Integer> map = new TreeMap<>();
+
+        for (String op : operations) {
+            String[] parts = op.split(" ");
+            String command = parts[0];
+            int number = Integer.parseInt(parts[1]);
+
+            if (command.equals("I")) {
+                map.put(number, map.getOrDefault(number, 0) + 1);
+            } else if (command.equals("D")) {
+                if (map.isEmpty()) continue;
+
+                int key = (number == 1) ? map.lastKey() : map.firstKey();
+                int count = map.get(key);
+                if (count == 1) {
+                    map.remove(key);
+                } else {
+                    map.put(key, count - 1);
+                }
+            }
+        }
+
+        if (map.isEmpty()) {
+            return new int[]{0, 0};
+        } else {
+            return new int[]{map.lastKey(), map.firstKey()};
+        }
+    }
+}
+
+ */
