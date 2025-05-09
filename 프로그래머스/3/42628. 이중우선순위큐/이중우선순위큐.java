@@ -71,5 +71,7 @@ class Solution {
         }
     }
 }
+firstKey()는 최솟값, lastKey()는 최댓값을 빠르게 찾을 수 있는 메서드
 
+값의 개수를 Map<Integer, Integer>로 관리하므로 중복된 숫자도 정확히 처리
  */
