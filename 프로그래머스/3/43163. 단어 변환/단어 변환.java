@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class Solution { // BFS 방식
     public int solution(String begin, String target, String[] words) {
         if (!Arrays.asList(words).contains(target)) {
             return 0;
@@ -53,7 +53,7 @@ class Solution {
     }
 }
 
-/*
+/* BFS 방식
 class Solution {
     int min = Integer.MAX_VALUE;
 
