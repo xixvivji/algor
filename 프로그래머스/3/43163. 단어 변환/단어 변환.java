@@ -2,7 +2,9 @@ import java.util.*;
 
 class Solution {
     public int solution(String begin, String target, String[] words) {
-        if (!Arrays.asList(words).contains(target)) return 0;
+        if (!Arrays.asList(words).contains(target)) {
+            return 0;
+        }
 
         Queue<Word> queue = new LinkedList<>();
         boolean[] visited = new boolean[words.length];
@@ -30,8 +32,12 @@ class Solution {
     private boolean isOneCharDiff(String a, String b) {
         int diff = 0;
         for (int i = 0; i < a.length(); i++) {
-            if (a.charAt(i) != b.charAt(i)) diff++;
-            if (diff > 1) return false;
+            if (a.charAt(i) != b.charAt(i)) {
+                diff++;
+            }
+            if (diff > 1) {
+                return false;
+            }
         }
         return diff == 1;
     }
@@ -46,3 +52,41 @@ class Solution {
         }
     }
 }
+
+/*
+class Solution {
+    int min = Integer.MAX_VALUE;
+
+    public int solution(String begin, String target, String[] words) {
+        boolean[] visited = new boolean[words.length];
+        dfs(begin, target, words, visited, 0);
+
+        return min == Integer.MAX_VALUE ? 0 : min;
+    }
+
+    void dfs(String current, String target, String[] words, boolean[] visited, int depth) {
+        if (current.equals(target)) {
+            min = Math.min(min, depth);
+            return;
+        }
+
+        for (int i = 0; i < words.length; i++) {
+            if (!visited[i] && isOneCharDiff(current, words[i])) {
+                visited[i] = true;
+                dfs(words[i], target, words, visited, depth + 1);
+                visited[i] = false; // 백트래킹
+            }
+        }
+    }
+
+    boolean isOneCharDiff(String a, String b) {
+        int diff = 0;
+        for (int i = 0; i < a.length(); i++) {
+            if (a.charAt(i) != b.charAt(i)) diff++;
+            if (diff > 1) return false;
+        }
+        return diff == 1;
+    }
+}
+
+ */
