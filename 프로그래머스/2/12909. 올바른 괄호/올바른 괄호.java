@@ -51,3 +51,35 @@ class Solution {
 간결함	✅ 더 간결하고 빠름	❌ 상대적으로 복잡
 유연성	❌ 괄호 종류 많으면 복잡	✅ 다양한 괄호 쌍 처리 가능
  */
+/*
+여러종류괄호
+import java.util.Stack;
+
+class Solution {
+    public boolean isValid(String s) {
+        Stack<Character> stack = new Stack<>();
+
+        for (char c : s.toCharArray()) {
+            // 여는 괄호일 경우 스택에 push
+            if (c == '(' || c == '{' || c == '[') {
+                stack.push(c);
+            } else {
+                // 닫는 괄호일 때 스택이 비어있으면 false
+                if (stack.isEmpty()) return false;
+
+                char top = stack.pop();
+                // 짝이 맞는지 확인
+                if ((c == ')' && top != '(') ||
+                    (c == '}' && top != '{') ||
+                    (c == ']' && top != '[')) {
+                    return false;
+                }
+            }
+        }
+
+        // 모두 처리하고 스택이 비어있어야 올바른 괄호
+        return stack.isEmpty();
+    }
+}
+
+ */
