@@ -35,3 +35,25 @@ class Solution {
 }
 
  */
+/*
+import java.util.Calendar;
+
+class Solution {
+    public String solution(int a, int b) {
+        // 요일 문자열을 배열로 정의 (일요일부터 토요일까지)
+        String[] days = {"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"};
+
+        // Calendar 객체 생성
+        Calendar cal = Calendar.getInstance();
+        // 2016년은 윤년이므로 정확한 날짜 설정 (month는 0부터 시작)
+        cal.set(2016, a - 1, b);
+
+        // Calendar.DAY_OF_WEEK는 1(일요일) ~ 7(토요일)
+        int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+
+        // 해당 요일 반환
+        return days[dayOfWeek - 1];
+    }
+}
+
+ */
