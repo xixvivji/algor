@@ -14,6 +14,7 @@ class Solution { // 자바 함수사용
 
 /*
 자바함수 사용X
+
 class Solution {
     public String solution(int a, int b) {
         // 요일 배열 (일요일부터 토요일까지)
