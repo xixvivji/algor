@@ -1,19 +1,21 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class Main {
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String input = sc.nextLine();
-        sc.close();
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        String str = br.readLine();
+        StringBuilder str2 = sb.append(str).reverse();
 
-        if (isPalindrome(input)) {
-            System.out.println(1);
-        } else {
-            System.out.println(0);
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) != str2.charAt(i)) {
+                System.out.println("0");
+                return;
+            }
         }
-    }
-
-    public static boolean isPalindrome(String str) {
-        return str.equals(new StringBuilder(str).reverse().toString());
+        System.out.println("1");
     }
 }
