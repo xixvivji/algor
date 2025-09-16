@@ -1,42 +1,54 @@
-import java.io.*;
-import java.util.*;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
-    static final int MOD = 1_000_000_007;
-    static long[] fact, inv;
 
-    static long pow(long a, long b) {
+    final static long P = 1000000007;
+
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+
+        long N = Long.parseLong(st.nextToken());
+        long K = Long.parseLong(st.nextToken());
+
+        long numer = factorial(N);
+        long denom = factorial(K) * factorial(N - K) % P;
+
+        System.out.println(numer * pow(denom, P - 2) % P);
+
+    }
+
+
+    public static long factorial(long N) {
+        long fac = 1L;
+
+        while (N > 1) {
+            fac = (fac * N) % P;
+            N--;
+        }
+        return fac;
+    }
+
+
+    public static long pow(long base, long expo) {
         long result = 1;
-        a %= MOD;
-        while (b > 0) {
-            if ((b & 1) == 1) result = (result * a) % MOD;
-            a = (a * a) % MOD;
-            b >>= 1;
+
+        while (expo > 0) {
+
+            if (expo % 2 == 1) {
+                result *= base;
+                result %= P;
+            }
+            base = (base * base) % P;
+            expo /= 2;
         }
         return result;
     }
 
-    static void prepare(int n) {
-        fact = new long[n + 1];
-        inv = new long[n + 1];
-        fact[0] = 1;
-        for (int i = 1; i <= n; i++) fact[i] = (fact[i - 1] * i) % MOD;
-        inv[n] = pow(fact[n], MOD - 2);
-        for (int i = n - 1; i >= 0; i--) inv[i] = (inv[i + 1] * (i + 1)) % MOD;
-    }
-
-    static long comb(int n, int k) {
-        if (k < 0 || k > n) return 0;
-        return fact[n] * inv[k] % MOD * inv[n - k] % MOD;
-    }
-
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        int n = Integer.parseInt(st.nextToken());
-        int k = Integer.parseInt(st.nextToken());
-
-        prepare(n);
-        System.out.println(comb(n, k));
-    }
 }
